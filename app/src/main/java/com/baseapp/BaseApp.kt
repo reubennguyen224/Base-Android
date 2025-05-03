@@ -1,6 +1,7 @@
 package com.baseapp
 
 import android.app.Application
+import com.baseapp.di.DI
 import timber.log.Timber
 
 class BaseApp : Application(){
@@ -9,5 +10,6 @@ class BaseApp : Application(){
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+        DI.initialize(this)
     }
 }
