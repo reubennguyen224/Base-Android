@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -7,20 +10,28 @@ plugins {
 
 android {
     namespace = "com.baseapp"
-    compileSdk = 34
+    compileSdk = Versions.Android.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.baseapp"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.Android.MIN_SDK
+        targetSdk = Versions.Android.TARGET_SDK
+        versionCode = Versions.App.VERSION_CODE
+        versionName = Versions.App.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        debug {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -28,12 +39,59 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    var appName = ""
+    applicationVariants.all {
+        outputs.all {
+            (this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl)?.apply {
+                val date = SimpleDateFormat("yyyyMMdd").format(Date())
+                val buildType = buildType.name
+                val flavor = productFlavors[0].name
+                outputFileName = "${appName}_${date}_${flavor}_${buildType}_${versionName}.apk"
+            }
+        }
+    }
+
+    flavorDimensions += "baseapp"
+    productFlavors {
+        create("dev") {
+            dimension = "baseapp"
+            applicationId = Configs.Dev.APPLICATION_ID
+            appName = Configs.Dev.APPLICATION_NAME
+            resValue("string", "app_name", Configs.Dev.APPLICATION_NAME)
+
+            addManifestPlaceholders(
+                mapOf(
+                    "app_name" to Configs.Dev.APPLICATION_NAME
+                )
+            )
+        }
+
+        create("product") {
+            dimension = "baseapp"
+            applicationId = Configs.RELEASE.APPLICATION_ID
+            appName = Configs.RELEASE.APPLICATION_NAME
+            resValue("string", "app_name", Configs.RELEASE.APPLICATION_NAME)
+
+            addManifestPlaceholders(
+                mapOf(
+                    "app_name" to Configs.RELEASE.APPLICATION_NAME
+                )
+            )
+        }
     }
 }
 
