@@ -126,6 +126,11 @@ dependencies {
     implementation(libs.glide)
     ksp(libs.glideKsp)
 
+    //Navigation
+    implementation(libs.androidx.nav.ui)
+    implementation(libs.androidx.nav.fragment)
+    implementation(libs.androidx.nav.dynamic)
+
     //DI
     implementation(libs.koin.android)
     implementation(libs.koin.annotation)
