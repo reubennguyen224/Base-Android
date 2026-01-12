@@ -1,7 +1,7 @@
 package com.baseapp.presentation.screens.first
 
 import com.baseapp.core.common.BaseFragment
-import com.baseapp.core.navigation.NavigationRoutes
+import com.baseapp.core.navigation.FirstNavigationRoutes
 import com.baseapp.databinding.FragmentFirstBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +19,7 @@ class FirstFragment: BaseFragment<FragmentFirstBinding>() {
     override fun initListener() {
         super.initListener()
         binding.btnLogin.setOnClickListener {
-            navController.navigate(NavigationRoutes.Login.route)
+            navController.navigate(FirstNavigationRoutes.Login.route)
         }
     }
 }

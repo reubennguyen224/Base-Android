@@ -53,6 +53,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     var appName = ""
@@ -135,6 +136,11 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.annotation)
     ksp(libs.koin.compiler)
+
+    //Networking
+    implementation(platform(libs.okhttpBom))
+    implementation(libs.okhttp)
+    implementation(libs.retrofit2)
 
     //Log
     implementation(libs.timber)

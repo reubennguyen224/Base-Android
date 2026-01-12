@@ -26,6 +26,8 @@ media = "1.7.0"
 viewpager2 = "1.1.0"
 kotlinxSerialization = "1.6.3"
 nav = "2.8.9"
+okhttp-bom = "4.11.0"
+retrofit2 = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,6 +58,9 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 
 koin-annotation = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotation" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotation" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+okhttpBom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp-bom" }
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
