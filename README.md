@@ -6,3 +6,4 @@ This project using:
 - Glide 4.15.1
 - Navigation Component
 - Timber
+- Kotlin DSL
