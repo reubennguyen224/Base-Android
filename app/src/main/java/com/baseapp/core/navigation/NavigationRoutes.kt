@@ -6,6 +6,6 @@ sealed class FirstNavigationRoutes(val route: String) {
     data object Register: FirstNavigationRoutes("RegisterScreen")
 }
 
-sealed class MainNavigationRoutes(val rote: String) {
-    data object Main: FirstNavigationRoutes("MainScreen")
+sealed class MainNavigationRoutes(val route: String) {
+    data object Main: MainNavigationRoutes("MainScreen")
 }
